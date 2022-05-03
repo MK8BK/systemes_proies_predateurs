@@ -5,6 +5,7 @@
 #define INCLUDE_COORD_H
 static const int TAILLEGRILLE = 20;
 #include <iostream>
+using namespace std;
 
 class Coord {
 	private:
@@ -13,11 +14,15 @@ class Coord {
 
 	public:
 		//public memembers go here
-		int getLine();
-		int getColumn();
+		int getLine() const;
+		int getColumn() const;
+		int toInt() const;
 		Coord(int lig, int col);
+		Coord(int position);
 
 };
+
 ostream &operator<<(ostream &out, const Coord &c);
-//std::ostream& operator<<(std::ostream&, const Math::Matrix&);
+bool operator==(const Coord &c1, const Coord &c2);
+bool operator!=(const Coord &c1, const Coord &c2);
 #endif
