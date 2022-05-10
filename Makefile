@@ -1,12 +1,15 @@
 CFLAGS = -std=c++11 -Wall
 CC = g++
 
-test: test.o coord.o
-	$(CC) $(CFLAGS) -o test test.o coord.o
+test: test.o ensemble.o coord.o
+	$(CC) $(CFLAGS) -o test test.o coord.o ensemble.o
 test.o: test.cpp
 	$(CC) $(CFLAGS) -c test.cpp
 coord.o: coord.cpp
 	$(CC) $(CFLAGS) -c coord.cpp
+ensemble.o: ensemble.cpp
+	$(CC) $(CFLAGS) -c ensemble.cpp
+
 clean:
 	rm -f core *.o
 

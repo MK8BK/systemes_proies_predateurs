@@ -1,6 +1,8 @@
 #include <stdexcept>
 #include <string>
 #include <iostream>
+#include "taillegrille.hpp"
+#include "ensemble.hpp"
 #include "coord.hpp"
 using namespace std;
 
@@ -34,6 +36,22 @@ Coord::Coord(int position){
 	lign = position / TAILLEGRILLE;
 }
 
+Ensemble Coord::voisines() const{
+	Ensemble e;
+	//lign, column available
+	int imin = max(lign - 1, 0);
+	int imax = min(lign+1, TAILLEGRILLE-1);
+	int jmin = max(column - 1, 0);
+	int jmax = min(column+1, TAILLEGRILLE-1);
+	for(int i=imin; i<=imax; i++){
+		for(int j=jmin; j<=jmax; j++){
+			if(i!= lign or j!= column){
+				e.ajoute(Coord {i,j}.toInt());
+			}
+		}
+	}
+	return e;
+}
 
 int Coord::toInt() const{
 	return TAILLEGRILLE*lign + column;

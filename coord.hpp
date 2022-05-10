@@ -3,7 +3,8 @@
 //using namespace std;
 #ifndef INCLUDE_COORD_H
 #define INCLUDE_COORD_H
-static const int TAILLEGRILLE = 20;
+#include "taillegrille.hpp"
+#include "ensemble.hpp"
 #include <iostream>
 using namespace std;
 
@@ -19,6 +20,7 @@ class Coord {
 		int toInt() const;
 		Coord(int lig, int col);
 		Coord(int position);
+		Ensemble voisines() const;
 
 };
 
