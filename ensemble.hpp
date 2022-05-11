@@ -1,12 +1,11 @@
-//#include <iostream>
-//#include <string>
-//using namespace std;
 #ifndef INCLUDE_ENSEMBLE_H
 #define INCLUDE_ENSEMBLE_H
+
 #include <iostream>
-#include "taillegrille.hpp"
-//#include "coord.hpp"
 using namespace std;
+
+#include "constantes.hpp"
+
 
 class Ensemble {
 	private:
@@ -28,4 +27,5 @@ class Ensemble {
 };
 
 ostream &operator<<(ostream &out, const Ensemble &e);
+
 #endif

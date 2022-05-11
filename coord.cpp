@@ -1,10 +1,11 @@
 #include <stdexcept>
 #include <string>
 #include <iostream>
-#include "taillegrille.hpp"
+using namespace std;
+
+#include "constantes.hpp"
 #include "ensemble.hpp"
 #include "coord.hpp"
-using namespace std;
 
 
 

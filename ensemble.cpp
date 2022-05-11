@@ -1,12 +1,12 @@
-//#include <stdexcept>
-#include "taillegrille.hpp"
-#include "ensemble.hpp"
 #include <string>
 #include <iostream>
 #include <exception>
 #include <stdlib.h>
 #include <time.h>
 using namespace std;
+
+#include "constantes.hpp"
+#include "ensemble.hpp"
 
 Ensemble::Ensemble(){
 	card = 0;

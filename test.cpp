@@ -1,13 +1,19 @@
 #define DOCTEST_CONFIG_IMPLEMENT_WITH_MAIN
-#include "doctest.h"
-#include "taillegrille.hpp"
-#include "ensemble.hpp"
-#include "coord.hpp"
+
 #include <exception>
 #include <string>
 using namespace std;
 
+#include "doctest.h"
+#include "constantes.hpp"
+#include "ensemble.hpp"
+#include "coord.hpp"
+#include "animal.hpp"
+
 TEST_CASE("testing Coord class") {
+	//TAILLEGRILLE
+	//cout << TAILLEGRILLE << endl;
+
 	//test simple case
 	//currently changing to dynamic grid size testing
 	Coord c1(TAILLEGRILLE/2,(TAILLEGRILLE*3)/4);
@@ -77,19 +83,45 @@ TEST_CASE("testing Coord class") {
 	CHECK(c20.toInt() == TAILLEGRILLE*TAILLEGRILLE-1);
 
 	//test voisines() mothod
-	Coord c21(0,0);
-	Coord c22(TAILLEGRILLE-1, TAILLEGRILLE-1);
-	Coord c23(0, TAILLEGRILLE-1);
-	Coord c24(TAILLEGRILLE-1, 0);
-	Coord c25(TAILLEGRILLE/2, 0);
-	Coord c26(0, TAILLEGRILLE/2);
-	Coord c27(TAILLEGRILLE/2, TAILLEGRILLE-1);
-	Coord c28(TAILLEGRILLE-1, TAILLEGRILLE/2);
-	Coord c29(TAILLEGRILLE/2, TAILLEGRILLE/2);
+	Coord c21(0,0);	
 	CHECK(c21.voisines().cardinal()==3);
+	CHECK(c21.voisines().getElement(0)==1);
+	CHECK(c21.voisines().getElement(1)==TAILLEGRILLE);
+	CHECK(c21.voisines().getElement(2)==TAILLEGRILLE+1);
 
-	//CHECK(c21.voisines() = );
+	Coord c22(TAILLEGRILLE-1, TAILLEGRILLE-1);
+	CHECK(c22.voisines().cardinal()==3);
+	CHECK(c22.voisines().getElement(0)==TAILLEGRILLE*(TAILLEGRILLE - 1) - 2);
+	CHECK(c22.voisines().getElement(1)==TAILLEGRILLE*(TAILLEGRILLE - 1) - 1);
+	CHECK(c22.voisines().getElement(2)==TAILLEGRILLE*TAILLEGRILLE - 2);
 
+	Coord c23(0, TAILLEGRILLE-1);
+	CHECK(c23.voisines().cardinal()==3);
+	CHECK(c23.voisines().getElement(0)==TAILLEGRILLE - 2);
+	CHECK(c23.voisines().getElement(1)==2*TAILLEGRILLE - 2);
+	CHECK(c23.voisines().getElement(2)==2*TAILLEGRILLE - 1);
+
+
+	Coord c24(TAILLEGRILLE-1, 0);
+	CHECK(c24.voisines().cardinal()==3);
+	CHECK(c24.voisines().getElement(0)==TAILLEGRILLE*(TAILLEGRILLE-2));
+	CHECK(c24.voisines().getElement(1)==(TAILLEGRILLE-1)*(TAILLEGRILLE-1) );
+	CHECK(c24.voisines().getElement(2)==TAILLEGRILLE*TAILLEGRILLE-TAILLEGRILLE+1);
+
+	Coord c25(TAILLEGRILLE/2, 0);
+	CHECK(c25.voisines().cardinal()==5);
+
+	Coord c26(0, TAILLEGRILLE/2);
+	CHECK(c26.voisines().cardinal()==5);
+
+	Coord c27(TAILLEGRILLE/2, TAILLEGRILLE-1);
+	CHECK(c27.voisines().cardinal()==5);
+
+	Coord c28(TAILLEGRILLE-1, TAILLEGRILLE/2);
+	CHECK(c28.voisines().cardinal()==5);
+
+	Coord c29(TAILLEGRILLE/2, TAILLEGRILLE/2);
+	CHECK(c29.voisines().cardinal()==8);
 }
 
 TEST_CASE("testing Ensemble class") {
@@ -132,7 +164,7 @@ TEST_CASE("testing Ensemble class") {
 	
 	//due to the uniqueness of elements within
 	for(int i=0; i<after; i++){
-		cout << i << " | "; 
+		//cout << i << " | "; 
 		CHECK(e1.getElement(i)!=elem);
 	}
 	
@@ -146,6 +178,46 @@ TEST_CASE("testing Ensemble class") {
 	CHECK(e1.estVide());
 
 	//test << operator
-	cout << e1 << endl;
+	//cout << e1 << endl;
 }
 
+TEST_CASE("testing Animal class") {
+	//test enum Espece
+	Espece e1 = lapin;
+	Espece e2 = renard;
+	//cout << toString(e1) << endl;
+
+	//test Animal constuctor
+	Animal l1(0,e1,0);
+	Animal r1(1, e2, (TAILLEGRILLE * TAILLEGRILLE)-1);
+
+	//test getId() const method
+	CHECK(l1.getId()==0);
+	CHECK(r1.getId()==1);
+
+	//test getCoord() const method
+	CHECK(l1.getCoord().getLine()==0);
+	CHECK(l1.getCoord().getColumn()==0);
+	CHECK(r1.getCoord().getLine()==TAILLEGRILLE-1);
+	CHECK(r1.getCoord().getColumn()==TAILLEGRILLE-1);
+
+	//test getEspece() const method
+	CHECK(tostring(l1.getEspece())=="lapin");
+	CHECK(tostring(r1.getEspece())=="renard");
+
+	//test toString() method
+	CHECK(l1.toString()=="lapin 0, (0, 0)");
+	CHECK(r1.toString()=="renard 1, (9, 9)");	
+	//cout << l1.toString() << endl;
+	//cout << r1.toString() << endl;
+	
+	//test setCoord() method
+	Coord cn(0, TAILLEGRILLE-1);
+	l1.setCoord(cn);
+	CHECK(l1.getCoord().getLine()==0);
+	CHECK(l1.getCoord().getColumn()==TAILLEGRILLE-1);
+
+	r1.meurt();
+
+
+}

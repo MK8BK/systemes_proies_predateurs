@@ -1,13 +1,15 @@
 CFLAGS = -std=c++11 -Wall
 CC = g++
 
-test: test.o ensemble.o coord.o
-	$(CC) $(CFLAGS) -o test test.o coord.o ensemble.o
-test.o: test.cpp
+test: test.o animal.o coord.o ensemble.o constantes.hpp
+	$(CC) $(CFLAGS) -o test test.o animal.o coord.o ensemble.o
+test.o: test.cpp animal.hpp coord.hpp ensemble.hpp constantes.hpp
 	$(CC) $(CFLAGS) -c test.cpp
-coord.o: coord.cpp
+animal.o: animal.cpp coord.hpp ensemble.hpp constantes.hpp
+	$(CC) $(CFLAGS) -c animal.cpp
+coord.o: coord.cpp ensemble.hpp constantes.hpp
 	$(CC) $(CFLAGS) -c coord.cpp
-ensemble.o: ensemble.cpp
+ensemble.o: ensemble.cpp constantes.hpp
 	$(CC) $(CFLAGS) -c ensemble.cpp
 
 clean:

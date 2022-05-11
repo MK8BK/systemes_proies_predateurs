@@ -1,12 +1,11 @@
-//#include <iostream>
-//#include <string>
-//using namespace std;
 #ifndef INCLUDE_COORD_H
 #define INCLUDE_COORD_H
-#include "taillegrille.hpp"
-#include "ensemble.hpp"
+
 #include <iostream>
 using namespace std;
+
+#include "constantes.hpp"
+#include "ensemble.hpp"
 
 class Coord {
 	private:
@@ -27,4 +26,5 @@ class Coord {
 ostream &operator<<(ostream &out, const Coord &c);
 bool operator==(const Coord &c1, const Coord &c2);
 bool operator!=(const Coord &c1, const Coord &c2);
+
 #endif
