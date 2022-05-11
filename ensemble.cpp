@@ -53,6 +53,30 @@ int Ensemble::getElement(int pos) const{
 	return t[pos];
 }
 
+int Ensemble::removeElement(int elem){
+	if(contains(elem)){
+		for(int i=0; i<card; i++){
+			if(t[i]==elem){
+				t[i]=t[card-1];
+				card=card-1;
+				return elem;
+			}
+		}
+	}
+	throw invalid_argument("can't remove element not in set");
+}
+
+
+bool Ensemble::contains(int elem) const{
+	for(int i=0; i<card; i++){
+		if(t[i]==elem){
+			return true;
+		}
+	}
+	return false;
+}
+
+
 void Ensemble::empty(){
 	card = 0;
 }

@@ -10,7 +10,7 @@
 using namespace std;
 
 
-enum Espece{lapin, renard};
+enum Espece{lapin, renard, animal};
 
 class Animal {
 	private:
@@ -26,12 +26,14 @@ class Animal {
 		int getId() const;
 		Coord getCoord() const;
 		Espece getEspece() const;
+		int getFoodLevel() const;
 		string toString() const;
 		void setCoord(Coord &newCoord);
-		//void seReproduit();
-		//void jeune();
-		//void mange();
-		bool meurt();
+		void jeune();
+		void mange(Ensemble voisines);
+		bool meurt() const;
+		bool seReproduit(int voisinsVides);
+		Animal& operator=(const Animal&) { return *this; }
 };
 
 //ostream &operator<<(ostream& out, Espece E);

@@ -2,7 +2,7 @@
 #define INCLUDE_TAILLEGRILLE_H
 
 //grille
-static const int TAILLEGRILLE = 10;
+static const int TAILLEGRILLE = 20;
 
 //renards
 static const int FoodInit = 5;

@@ -23,6 +23,8 @@ class Ensemble {
 		int tire();
 		//for usage in the << operator
 		int getElement(int pos) const;
+		int removeElement(int elem);
+		bool contains(int elem) const;
 		void empty();
 };
 
