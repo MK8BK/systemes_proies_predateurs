@@ -438,8 +438,8 @@ TEST_CASE("testing Jeu class"){
 	cout << simulation << endl;
 
 	//test proba constructor
-	unsigned seed = time(0);
-	srand(seed);
-	Jeu simulation2(false);
-	cout << simulation2 << endl;
+	//unsigned seed = time(0);
+	//srand(seed);
+	//Jeu simulation2(false);
+	//cout << simulation2 << endl;
 }
