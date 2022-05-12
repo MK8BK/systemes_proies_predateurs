@@ -1,3 +1,4 @@
+
 //#include <stdexcept>
 #include <string>
 #include <iostream>
@@ -63,4 +64,27 @@ void Grille::setCase(Animal &a){
 	p.set(a);
 	g[a.getCoord().getLine()][a.getCoord().getColumn()] = a.getId();
 
+}
+
+
+string Grille::toString(){
+	Ensemble ids = p.getIds();
+	string representation = "\n";
+	for(int i=0; i<TAILLEGRILLE; i++){
+		for(int j=0; j<TAILLEGRILLE; j++){
+			if(ids.contains(g[i][j])){
+				Animal a = p.get(g[i][j]);
+				if(a.getEspece()==lapin){
+					representation = representation + "L";
+					continue;
+				}
+				representation = representation + "R";
+				continue;
+			}
+			representation = representation + " ";
+			continue;
+		}
+		representation = representation+"\n";
+	}
+	return representation;
 }

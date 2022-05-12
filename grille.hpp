@@ -29,6 +29,7 @@ class Grille {
 		void setCase(Animal &a);
 		Animal getAnimal(int identifiant);
 		Ensemble getIdentifiants();
+		string toString();
 };
 
 

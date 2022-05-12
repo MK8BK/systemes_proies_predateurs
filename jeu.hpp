@@ -21,8 +21,19 @@ class Jeu {
 
 	public:
 		//public memembers go here
-		void ajouteAnimal()
+		void ajouteAnimal(Espece e, Coord c);
+		string toString();
+		Jeu(bool vide);
+		//void verifieGrille();
+		//Ensemble voisinsVides();
+		//Ensemble voisinsLapins();
+		//void deplace(int identifiant, Coord nc);
+		//void deplaceAleatoirement(int identifiant);
+		//void mange(int identifiant, int identifiant);
+		//void evolueLapin(int identifiant);
+		//void evolueRenard(int identifiant);
 };
 
-#endif
+ostream &operator<<(ostream &out, Jeu &j);
 
+#endif

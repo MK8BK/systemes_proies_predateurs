@@ -147,14 +147,14 @@ TEST_CASE("testing Ensemble class") {
 	//test cardinal() method
 	CHECK(e1.cardinal()==1);
 
-	for(int i=2; i<TAILLEGRILLE*TAILLEGRILLE; i++){
+	for(int i=1; i<TAILLEGRILLE*TAILLEGRILLE; i++){
 		e1.ajoute(i);
 	}
 
-	CHECK(e1.cardinal()==TAILLEGRILLE*TAILLEGRILLE-1);
+	CHECK(e1.cardinal()==TAILLEGRILLE*TAILLEGRILLE);
 	//test ajoute() method
 	int i = 0;
-	while(e1.cardinal()<TAILLEGRILLE*TAILLEGRILLE + 1){
+	while(e1.cardinal()<=TAILLEGRILLE*TAILLEGRILLE){
 		//cout << e1.cardinal()<<" | "<<endl;
 		e1.ajoute(i);
 		i++;
@@ -341,7 +341,7 @@ TEST_CASE("testing Population class") {
 }
 
 TEST_CASE("testing Grille class") {
-	//test constructor
+//test constructor
 	Grille g1;
 
 	//test caseVide() method
@@ -393,6 +393,11 @@ TEST_CASE("testing Grille class") {
 	CHECK(IDS.contains(1));
 	CHECK(IDS.contains(2));
 	CHECK(IDS.contains(3));
+	//cout << g1.getAnimal(0).toString() << endl;
+	//cout << g1.getAnimal(1).toString() << endl;
+	//cout << g1.getAnimal(2).toString() << endl;
+	//cout << g1.getAnimal(3).toString() << endl;
+
 
 	//test videCase() method
 	g1.videCase(l1.getCoord());
@@ -402,8 +407,39 @@ TEST_CASE("testing Grille class") {
 	CHECK(IDS.contains(1));
 	CHECK(IDS.contains(2));
 	CHECK(IDS.contains(3));
+	//cout << IDS << endl;
+	//cout << g1.getAnimal(1).toString() << endl;
+	//cout << g1.getAnimal(2).toString() << endl;
+	//cout << g1.getAnimal(3).toString() << endl;
+	
+	//test toString() method
+	//cout << g1.toString() << endl;
 }
 
 TEST_CASE("testing Jeu class"){
+	//test constructor
+	Jeu simulation(true);
 
+	//test ajoutAnimal() method
+	Coord c1(TAILLEGRILLE*TAILLEGRILLE-1);
+	simulation.ajouteAnimal(lapin, c1);
+	Coord c2(0);
+	simulation.ajouteAnimal(renard, c2);
+	Coord c3(TAILLEGRILLE-1);
+	simulation.ajouteAnimal(lapin, c3);
+	Coord c4(TAILLEGRILLE*TAILLEGRILLE-TAILLEGRILLE);
+	simulation.ajouteAnimal(lapin, c4);
+	Coord c5((TAILLEGRILLE/2)*(TAILLEGRILLE+1));
+	simulation.ajouteAnimal(renard, c5);
+	Coord c6((TAILLEGRILLE/2)*(TAILLEGRILLE));
+	simulation.ajouteAnimal(lapin, c6);
+	Coord c7((TAILLEGRILLE/3)*(TAILLEGRILLE+1));
+	simulation.ajouteAnimal(renard, c7);
+	cout << simulation << endl;
+
+	//test proba constructor
+	unsigned seed = time(0);
+	srand(seed);
+	Jeu simulation2(false);
+	cout << simulation2 << endl;
 }

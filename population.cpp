@@ -41,10 +41,12 @@ void Population::supprime(int identifiant){
 	if(not identifiants.contains(identifiant)){
 		throw invalid_argument("animal not in population");
 	}
-	identifiants.removeElement(identifiant);
 	for(std::size_t i=0; i<faune.size(); i++){
 		if(faune[i].getId()==identifiant){
-			faune.erase(faune.begin()+i);
+			Animal a = Animal(-1, animal, faune[i].getCoord().toInt());
+			faune[i] = a;
+			//faune.erase(faune.begin()+i);
+			identifiants.removeElement(identifiant);
 			return;
 		}
 	}
